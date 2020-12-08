@@ -156,7 +156,8 @@ double dichotomy_min_function(double(*fi)(double), double x0, double x1)
 		if (fabs(x1 - x0) < 1e-4)
 		{
 			
-			printf("answer is: %f", (x0 + x1) / 2,"\n");
+			printf("answer is: %f", (x0 + x1) / 2);
+			printf("\n");
 			break;
 		}
 		double cminus = (x0 + x1) / 2.0 - s / 2.0;

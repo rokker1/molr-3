@@ -60,15 +60,16 @@ double F3(double* x, int n)
 void testMinFOP()
 {
 	//тестирование метода одномерной оптимизации
-	double xmin, ans = 2.;
-	xmin = min_function(f, 5); // одномерная функция pf, начальная точка x0 = 5
+	double xmin, ans = 4.0643;
+	xmin = min_function(f1, 5); // одномерная функция pf, начальная точка x0 = 5
 	if (fabs(xmin - ans) > 0.01)
 		printf("\nErrrorr1: Naydena Tochka minimuma = %lf, answer = %lf", xmin, ans);
+	printf("\nNaydena Tochka minimuma = %lf", min_function(f1, 5));
+	printf("\nNaydena Tochka minimuma = %lf", min_function(f1, 0));
 }
 
 void test()
 {
-
 	MinFNPpoNapr minFNPpoNapr(F3, 3);
 	minFNPpoNapr.x0[0] = 2;
 	minFNPpoNapr.x0[1] = 1;
@@ -76,14 +77,14 @@ void test()
 	minFNPpoNapr.d[0] = -1;
 	minFNPpoNapr.d[1] = 2;
 	minFNPpoNapr.d[2] = 1;
-	double answ[3] = { 1,0,0 };//ошибка! найти аналтически
+	double answ[3] = { 2.763,-0.526,4.237 };
 	double* xopt = minFNPpoNapr.findMinFNPpoNapr();
 	double S = 0;
 	for (int i = 0; i < 3; i++)
 		S += (xopt[i] - answ[i]) * (xopt[i] - answ[i]);
 	if (fabs(sqrt(S)) > 0.01)
 		printf("\nErrrorr2: Naydena Tochka minimuma = (%f, %f, %f), answer = (%f, %f, %f)", xopt[0], xopt[1], xopt[2], answ[0], answ[1], answ[2]);
-
+	printf("\nNaydena Tochka minimuma = (%f, %f, %f)", xopt[0], xopt[1], xopt[2]);
 }
 
 
@@ -152,11 +153,11 @@ void run_dichotomy_minFunction() //работа с минимизацией ме
 
 int main()
 {
-	run_dichotomy_minFunction();
+	//run_dichotomy_minFunction();
 	
 	//run_minFunction4();
 	//testMinFOP();
-    //test();
+    test();
     //testGrad();
 	//run_minFunction3();
 	//min_function3(f1, -7, 15.0);
