@@ -149,25 +149,39 @@ double min_function3(double (*fi)(double), double a, double b) //минимизация одн
 
 double dichotomy_min_function(double(*fi)(double), double x0, double x1)
 {
-	double s = 0.0001;
+	double s = 1e-5;
 	
 	while (true)
 	{
-		double fx0 = (x0 + x1) / 2.0 - s / 2.0;
-		double fx1 = (x0 + x1) / 2.0 + s / 2.0;
-		double f0 = fi(x0);
-		double f1 = fi(x1);
-		if (f0 <= f1)
+		if (fabs(x1 - x0) < 1e-4)
 		{
-			x1 = fx1;
+			
+			printf("answer is: %f", (x0 + x1) / 2,"\n");
+			break;
+		}
+		double cminus = (x0 + x1) / 2.0 - s / 2.0;
+		double cplus = (x0 + x1) / 2.0 + s / 2.0;
+		double fx0 = fi(x0);
+		double fx1 = fi(x1);
+		double fxcplus = fi(cplus);
+		double fxcminus = fi(cminus);
+		if (fxcminus<= fxcplus)
+		{
+			x1 = cplus;
 		}
 		else
-		{
-			x0 = fx0;
-		}
-		if (fabs(x1 - x0) < 1e-3) break;
+			if (fxcminus > fxcplus)
+			{
+				x0 = cminus;
+			}
+			else
+			{
+				printf("net udach tochek (((( ");
+				break;
+			}
+		
 	}
 
-	printf("answer is: %f", (x0 + x1) / 2);
+	
 	return (x0 + x1) / 2.0;
 }

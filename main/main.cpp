@@ -134,18 +134,31 @@ void run_minFunction4() //работа с минимизацией методо�
 
 	}
 }
+void run_dichotomy_minFunction() //работа с минимизацией методом Ньютона
+{
+	while (1)
+	{
+		std::cout << "Enter new points\n";
+		std::cin >> start_p;
+		std::cin >> stop_p;
+		double dstart_p = std::stod(start_p);
+		double dstop_p = std::stod(stop_p);
+		dichotomy_min_function(f1,dstart_p, dstop_p);
+		
 
+	}
+}
 
 
 int main()
 {
-	//dichotomy_min_function(f1, -2, 0);
+	run_dichotomy_minFunction();
 	
 	//run_minFunction4();
 	//testMinFOP();
     //test();
     //testGrad();
-	run_minFunction3();
+	//run_minFunction3();
 	//min_function3(f1, -7, 15.0);
 	
     //std::cout << "\nhello";
